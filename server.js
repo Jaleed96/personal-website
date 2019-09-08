@@ -15,10 +15,11 @@ app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)
 })
 
-app.get('/getAllRepos', (req, res) => {
-    github.getAllRepos().then((response) => {
-        res.json(JSON.parse(response));
+app.get('/getRepositories', (req, res) => {
+    github.fetchRepositories().then((response) => {
+        res.json(response);
     }).catch((error) => {
-        res.send(error);
+        console.log(error);
+        res.status(403).send(error);
     });
 })
