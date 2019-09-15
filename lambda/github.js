@@ -28,7 +28,7 @@ async function determineProjectLanguages(projects) {
             headers: HEADERS
         }
         let updatedResponse = await request(options).catch(error => { return Promise.reject(error); });
-        updatedResponse = {...repo, "languages":JSON.parse(updatedResponse)};
+        updatedResponse = {...repo, "languages": JSON.parse(updatedResponse)};
         return updatedResponse;
     });
 
