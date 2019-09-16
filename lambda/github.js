@@ -1,5 +1,5 @@
 const request = require('request-promise');
-const credentials = require('../auth/github-credentials');
+const credentials = require('./github-credentials');
 
 const ID = credentials.ID;
 const SECRET = credentials.SECRET;
@@ -21,8 +21,7 @@ async function fetchRepositories() {
 }
 
 async function determineProjectLanguages(projects) {
-    let subarray = projects.slice(2, 6);
-    let promises = subarray.map(async (repo) => {
+    let promises = projects.map(async (repo) => {
         let options = {
             uri: repo.languages_url,
             headers: HEADERS

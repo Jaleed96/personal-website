@@ -9,8 +9,8 @@ function putItem(item) {
     };
 
     return new Promise((resolve, reject) => {
-        db.putItem(params, (error, data) => {
-            if (error) reject(error);
+        db.putItem(params, (err, data) => {
+            if (err) reject(err);
             resolve(data);
         })
     })
@@ -22,8 +22,8 @@ function getAllItems() {
     }
 
     return new Promise((resolve, reject) => {
-        db.scan(params, (error, data) => {
-            if (error) reject(error);
+        db.scan(params, (err, data) => {
+            if (err) reject(err);
             resolve(data);
         })
     })
@@ -38,22 +38,8 @@ function deleteItem(itemID) {
     }
 
     return new Promise((resolve, reject) => {
-        db.deleteItem(params, (error, data) => {
-            if (error) reject(error);
-            resolve(data);
-        })
-    })
-}
-
-function batchModifyItems(requestArray) {
-    let params = {
-        RequestItems: {}
-    }
-    params.RequestItems[TABLE] = requestArray;
-
-    return new Promise((resolve, reject) => {
-        db.batchWriteItem(params, (error, data) => {
-            if (error) reject(error);
+        db.deleteItem(params, (err, data) => {
+            if (err) reject(err);
             resolve(data);
         })
     })
@@ -62,4 +48,4 @@ function batchModifyItems(requestArray) {
 module.exports.putItem = putItem;
 module.exports.getAllItems = getAllItems;
 module.exports.deleteItem = deleteItem;
-module.exports.batchModifyItems = batchModifyItems;
+
